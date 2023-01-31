@@ -1,0 +1,11 @@
+<h1>Hi! This is Maze</h1>
+<p>Welcome to maze, you can connect with your friends by creating some posts here.</p>
+<div>
+  <%= link_to 'View Posts', posts_path(id: current_user.id), class: "btn btn-secondary" %>
+</div>
+</br>
+<div>
+    <%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-secondary" %>
+</div>
+
+

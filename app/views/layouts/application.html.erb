@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Neweb</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <p class="notice"><%= notice %></p>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid d-flex flex-row-reverse">
+        <a class="navbar-brand" href="/page/index">MAZE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <% if user_signed_in? %>
+              <li class="nav-item container">
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link btn btn-dark' %> 
+              </li>
+              <li class="nav-item">
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link btn btn-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item container">
+              <%= link_to "Login", new_user_session_path, :class => 'navbar-link btn btn-dark' %>
+              </li>
+              <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link btn btn-dark' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </head>
+
+  <body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <div class = "container">
+    <%= yield %>
+    </br>
+    </br>
+    <% if user_signed_in? %>
+      This is,  <strong><%= current_user.email %></strong> SORRY still working on sign up...
+      <% if current_user.has_role? :user %>
+        <b> The current user is not an Admin. </b>
+      <% else %>
+        <b> The current user is an Admin. </b>
+      <% end %>
+    <% end %>
+    </div>
+  </body>
+</html>
