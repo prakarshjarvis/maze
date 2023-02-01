@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_01_073337) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_01_093949) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,14 +49,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_073337) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "post_id"
+    t.integer "likeable_id"
     t.integer "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "likeable_type"
     t.index ["comment_id"], name: "index_likes_on_comment_id"
-    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type"
+    t.index ["likeable_id"], name: "index_likes_on_likeable_id"
     t.index ["user_id", "comment_id"], name: "index_likes_on_user_id_and_comment_id", unique: true
-    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
+    t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 

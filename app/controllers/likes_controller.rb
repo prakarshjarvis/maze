@@ -9,7 +9,7 @@ class LikesController < ApplicationController
 
     def destroy
         @like = current_user.likes.find(params[:id])
-        post = @like.post
+        like = @like.likeable
         @like.destroy
         redirect_to posts_path
     end
@@ -17,7 +17,7 @@ class LikesController < ApplicationController
     private
 
     def like_params
-        params.require(:like).permit(:post_id)
+        params.require(:like).permit(:likeable_id, :likeable_type)
     end
 
 end

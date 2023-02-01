@@ -2,5 +2,6 @@
   <p>
     <strong><%= current_user.email %></strong>
     : <%= comment.body %>
+    <%= render partial: 'likes/button', locals: {likeable: comment} %>
   </p>
 </div>

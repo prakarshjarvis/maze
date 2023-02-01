@@ -11,12 +11,5 @@
   <% if post.image.attached? %> 
     <%= image_tag post.image, style: "length: 500px; width: 500px" %>
   <% end %>
-  <%= post.likes.count %> Likes
-  </br>
-  <% like = current_user.likes.find_by(post: post) %>
-  <% if like and like.valid? %> 
-    <%= button_to "Unlike", like_path(like), method: :delete, class: "btn btn-info" %>
-  <% else %>
-    <%= button_to "Like", likes_path, params: { like: { post_id: post.id }}, method: :post, class: "btn btn-info" %>
-  <% end %>
+  <%= render partial: 'likes/button', locals: {likeable: post} %>
 </div>
