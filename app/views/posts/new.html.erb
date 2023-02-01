@@ -5,5 +5,5 @@
 <br>
 
 <div>
-  <%= link_to "Back to posts", posts_path(id: current_user.id) %>
+  <%= link_to "Back to posts", posts_path(id: @user.id), class: "btn btn-secondary" %>
 </div>

@@ -8,5 +8,15 @@
     <strong>Body:</strong>
     <%= post.body %>
   </p>
-
+  <% if post.image.attached? %> 
+    <%= image_tag post.image, style: "length: 500px; width: 500px" %>
+  <% end %>
+  <%= post.likes.count %> Likes
+  </br>
+  <% like = current_user.likes.find_by(post: post) %>
+  <% if like and like.valid? %> 
+    <strong> Already liked </strong> 
+  <% else %>
+  <%= button_to "Like", likes_path, params: { like: { post_id: post.id }}, method: :post, class: "btn btn-info" %>
+  <% end %>
 </div>

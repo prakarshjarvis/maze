@@ -20,12 +20,15 @@
     <%= form.label :body, style: "display: block" %>
     <%= form.text_field :body %>
   </div>
-
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image, class: "form-control" %>
+  </div>
   <div>
     <%#= form.label :user_id, style: "display: block" %>
     <%= form.text_field :user_id, id: :user_id, value: user.id, type: :hidden %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class: "btn btn-secondary">
+    <%= form.submit%>
   </div>
 <% end %>

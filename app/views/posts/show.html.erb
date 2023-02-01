@@ -3,7 +3,7 @@
 <%= render @post %>
 
 <div>
-  <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-dark" %>
+  <%= link_to "Edit this post", edit_post_path(@post, id: @post.user_id), class: "btn btn-dark" %>
   &nbsp
   <%= link_to "Back to posts", posts_path(id: current_user.id), class: "btn btn-dark" %>
   <%= button_to "Destroy this post", @post, method: :delete, class: "btn btn-dark" %>
