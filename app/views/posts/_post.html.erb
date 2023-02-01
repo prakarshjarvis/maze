@@ -15,8 +15,8 @@
   </br>
   <% like = current_user.likes.find_by(post: post) %>
   <% if like and like.valid? %> 
-    <strong> Already liked </strong> 
+    <%= button_to "Unlike", like_path(like), method: :delete, class: "btn btn-info" %>
   <% else %>
-  <%= button_to "Like", likes_path, params: { like: { post_id: post.id }}, method: :post, class: "btn btn-info" %>
+    <%= button_to "Like", likes_path, params: { like: { post_id: post.id }}, method: :post, class: "btn btn-info" %>
   <% end %>
 </div>
