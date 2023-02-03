@@ -11,6 +11,7 @@
       <% end %>
     </ul>
     <%= link_to 'Add Users', page_new_path, class: "btn btn-secondary" %>
+    <%= link_to "Dowload Users CSV", users_admin_index_path(format: :csv), class: "btn btn-secondary" %>
     <%#= render partial: 'newUser', user: @newUser,  class: "btn btn-secondary" %>
   <% end %>
 </div>

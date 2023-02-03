@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/page/activate", to: "page#activate"
   get  '/page/new',  to: 'page#new'
   post 'page/create',  to: 'page#create'
+  resources :users_admin, :controller => 'users'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'page#index'
   # Defines the root path route ("/")
