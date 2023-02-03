@@ -1,0 +1,20 @@
+<div id="<%= dom_id user %>" style="display: flex; justify-content: space-around">
+  <div>
+    <p>
+      <strong>Email:</strong>
+      <%= user.email %>
+      </br>
+      <strong>Role:</strong>
+      <%= user.roles_name %>
+    </p>
+  </div>
+  <div>
+    <% if user != current_user %>
+      <%  if user.has_role? :active %>
+        <%=link_to "Deactivate", page_deactivate_path(user_id: user), method: :post, data: { confirm: "Are you sure?" } %>
+      <% else %>
+        <%=link_to "Activate", page_activate_path(user_id: user), method: :post, data: { confirm: "Are you sure?" } %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

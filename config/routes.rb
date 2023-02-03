@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
   get 'page/index'
+  get "/page/deactivate", to: "page#deactivate"
+  get "/page/activate", to: "page#activate"
+  get  '/page/new',  to: 'page#new'
+  post 'page/create',  to: 'page#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'page#index'
   # Defines the root path route ("/")

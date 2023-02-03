@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :check_user
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
@@ -58,6 +59,13 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def check_user
+    if(current_user.has_role? :inactive)
+      flash[:alert] = "User Inactive"
+      redirect_to page_index_path
     end
   end
 

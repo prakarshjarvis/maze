@@ -50,11 +50,11 @@
     </br>
     </br>
     <% if user_signed_in? %>
-      This is,  <strong><%= current_user.email %></strong> SORRY still working on sign up...
+      This is,  <strong><%= current_user.email %> </strong>. The current user is
       <% if current_user.has_role? :user %>
-        <b> The current user is not an Admin. </b>
+        <b> not an Admin. </b>
       <% else %>
-        <b> The current user is an Admin. </b>
+        <b> an Admin. </b>
       <% end %>
     <% end %>
     </div>

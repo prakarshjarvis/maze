@@ -1,15 +1,19 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
+<div id="<%= dom_id post %>" style="display: flex; justify-content: space-around">
+  <div>
+    <p>
+      <strong>Title:</strong>
+      <%= post.title %>
+    </p>
 
-  <p>
-    <strong>Body:</strong>
-    <%= post.body %>
-  </p>
-  <% if post.image.attached? %> 
-    <%= image_tag post.image, style: "length: 500px; width: 500px" %>
-  <% end %>
-  <%= render partial: 'likes/button', locals: {likeable: post} %>
+    <p>
+      <strong>Body:</strong>
+      <%= post.body %>
+    </p>
+    <% if post.image.attached? %>
+      <%= image_tag post.image, style: "length: 500px; width: 500px" %>
+    <% end %>
+  </div>
+  <div>
+    <%= render partial: 'likes/button', locals: {likeable: post} %>
+  </div>
 </div>
