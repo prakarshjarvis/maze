@@ -3,14 +3,12 @@ module GenerateCsv
   require 'csv'
 
   class_methods do
-    def to_csv(collection)
-      # wanted_columns = [:id, :shipname, :shipaddress, :shipcity, :shipstate, :shipzip]
+    def to_csv(collection, count)
       CSV.generate(col_sep: ';') do |csv|
-        csv << ["Id", "Email", "Posts Count", "Likes Count"]
-        # csv << column_names
+        csv << ["Id", "Email", "Posts Count", "Comments Count", "Likes Count"]
         collection.each do |record|
-          if record.posts.count > 0
-            csv << [record.id, record.email, record.posts.count, record.likes.count]
+          if record.posts.count >= count.to_i
+            csv << [record.id, record.email, record.posts.count, record.comments.count, record.likes.count]
           end
         end
       end

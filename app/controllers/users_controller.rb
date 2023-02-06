@@ -9,8 +9,13 @@ class UsersController < ApplicationController
       format.html
       format.csv do
         filename = ['Users', Date.today.to_s].join(' ')
-        send_data User.to_csv(@users), filename:, content_type: 'text/csv'
+        send_data User.to_csv(@users, params[:count]), filename:, content_type: 'text/csv'
       end
+      format.xlsx {
+        response.headers[
+          'Content-Disposition'
+        ] = "attachment; filename=users.xlsx"
+      }
     end
   end
 end

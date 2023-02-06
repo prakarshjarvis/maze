@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Posts") do |sheet|
+  # Create the header row
+  sheet.add_row ["Title", "Descrription", "Comments Count", "Likes Count"]
+  # Create entries for each item
+  @posts.each do |item|
+    sheet.add_row [item.title, item.body, item.comments.count, item.likes.count]
+  end
+end

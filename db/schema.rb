@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_01_093949) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_121118) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,7 +44,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_093949) do
     t.datetime "updated_at", null: false
     t.string "body"
     t.integer "post_id", null: false
+    t.integer "user_id", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -89,6 +91,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_093949) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "firstname"
+    t.string "lastname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -104,5 +108,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_093949) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
 end

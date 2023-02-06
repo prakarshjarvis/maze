@@ -7,6 +7,19 @@ class PostsController < ApplicationController
     @user = current_user
     @posts = Post.all
     @posts = @posts.where(published: true).or(current_user.posts)
+    respond_to do |format|
+      @posts = Post.all
+      format.html
+      format.csv do
+        filename = ['Posts', Date.today.to_s].join(' ')
+        send_data Post.to_csv(@posts), filename:, content_type: 'text/csv'
+      end
+      format.xlsx {
+        response.headers[
+          'Content-Disposition'
+        ] = "attachment; filename=posts.xlsx"
+      }
+    end
   end
 
   # GET /posts/1 or /posts/1.json

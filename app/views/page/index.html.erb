@@ -11,8 +11,13 @@
       <% end %>
     </ul>
     <%= link_to 'Add Users', page_new_path, class: "btn btn-secondary" %>
-    <%= link_to "Dowload Users CSV", users_admin_index_path(format: :csv), class: "btn btn-secondary" %>
-    <%#= render partial: 'newUser', user: @newUser,  class: "btn btn-secondary" %>
+    <%= link_to "Dowload Users CSV", users_admin_index_path(count: 0, format: :csv), class: "btn btn-secondary" %>
+    <%=
+      link_to 'Download Users as Excel', users_admin_index_path(format: :xlsx), class: "btn btn-secondary"
+    %>
+    <%= link_to "Dowload Users CSV with more than 10 posts", users_admin_index_path(count: 10, format: :csv), class: "btn btn-secondary" %>
+    <%= link_to "Dowload Posts CSV data", posts_path(format: :csv), class: "btn btn-secondary" %>
+    <%= link_to "Dowload Posts Excel data", posts_path(format: :xlsx), class: "btn btn-secondary" %>
   <% end %>
 </div>
 </br>

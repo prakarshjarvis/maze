@@ -69,4 +69,16 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  #For sendgrid
+  ActionMailer::Base.smtp_settings = {
+    :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    :password => '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', # This is the secret sendgrid API key which was issued during API key creation
+    :domain => 'yourdomain.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
 end
